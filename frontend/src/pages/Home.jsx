@@ -318,11 +318,3 @@ function Home() {
 
 export default Home;
 
-{
-  /* <div className="bg-pure-greys-5 text-black">
-        <div className="homepage_bg h-[333px]">
-
-        </div>
-
-      </div> */
-}

@@ -11,12 +11,11 @@ export default function EmailVerification() {
   const dispatch=useDispatch();
 
 
-  //agr signup data hi na ho to signup page par redirect kar denge
   useEffect(()=>{
     if(!signUpData){
-    navigate("/signup")
-  }
-  },[])
+      navigate("/signup")
+    }
+  },[signUpData, navigate])
   
 
   //yha par otp ko combine kar denge signupdata k saath or tb signup api hit karnge

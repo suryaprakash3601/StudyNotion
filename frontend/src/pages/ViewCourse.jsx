@@ -34,7 +34,7 @@ export default function ViewCourse() {
     }
     getFullLectureDetails();
 
-  },[courseId])
+  },[courseId, token, dispatch])
 
   return (
     <>

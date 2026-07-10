@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getCategoryPageDetails } from "../services/operations/categoryApi";
-import Course_Card from "../components/core/Catalog/Course_Card";
+import CourseCard from "../components/core/Catalog/Course_Card";
 import CourseSlider from "../components/core/Catalog/CourseSlider";
 
 export default function Catalog() {
@@ -102,7 +102,7 @@ export default function Catalog() {
         {catalogPageData?.topSellingCourse?.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-10">
             {catalogPageData.topSellingCourse.map((course, index) => (
-              <Course_Card course={course} key={index} height="h-[200px]" />
+              <CourseCard course={course} key={index} height="h-[200px]" />
             ))}
           </div>
         ) : (

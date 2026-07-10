@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import { apiConnector } from "../services/apiConnector";
 import { courseEndpoints } from "../services/api";
@@ -59,15 +59,16 @@ export default function SearchResults() {
   }, [fetchResults]);
 
   // Debounced search input handler
-  const debouncedSearch = useCallback(
-    debounce((value) => {
-      setSearchParams((prev) => {
-        const next = new URLSearchParams(prev);
-        next.set("q", value);
-        next.set("page", "1");
-        return next;
-      });
-    }, 400),
+  const debouncedSearch = useMemo(
+    () =>
+      debounce((value) => {
+        setSearchParams((prev) => {
+          const next = new URLSearchParams(prev);
+          next.set("q", value);
+          next.set("page", "1");
+          return next;
+        });
+      }, 400),
     []
   );
 
