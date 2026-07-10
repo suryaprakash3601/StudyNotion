@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { matchPath, NavLink, useLocation } from "react-router-dom";
 import * as Icons from "react-icons/vsc";
 

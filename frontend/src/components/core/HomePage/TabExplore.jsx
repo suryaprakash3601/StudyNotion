@@ -25,7 +25,7 @@ export default function TabExplore() {
   const handleClick = (value) => {
     setCurrentTab(value);
     let data = HomePageExplore.filter((el) => {
-      return el.tag == value;
+      return el.tag === value;
     });
     //by looking at data
     setCourses(data[0].courses);
@@ -34,7 +34,7 @@ export default function TabExplore() {
 
   const handleCard=(value)=>{
     let data=courses.filter((el)=>{
-        return el==value
+        return el === value
     })
     setCurrentCourses(data[0]);
   }
@@ -58,7 +58,7 @@ export default function TabExplore() {
             <div
               key={index}
               className={` cursor-pointer h-full flex items-center justify-center px-5 rounded-full hover:bg-richblack-900 transition-all duration-200 ${
-                el == currentTab ? "bg-richblack-900" : ""
+                el === currentTab ? "bg-richblack-900" : ""
               }`}
               onClick={() => {
                 handleClick(el);

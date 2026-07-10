@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,6 @@ export default function MyProfile() {
   const{loading}=useSelector((state)=>state.profile);
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
-  const[userDetails,setUserDetails]=useState(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
@@ -20,7 +19,7 @@ export default function MyProfile() {
     if (token ) {
       dispatch(getProfile({ token }));
     }
-  }, []); // ✅ ensures it runs once when token is ready
+  }, [dispatch, token]); // ✅ ensures it runs once when token is ready
 
     //console.log("perfect user", user);
   if(loading){
