@@ -1,0 +1,216 @@
+require("dotenv").config();
+const Course = require("../modules/course");
+const Section = require("../modules/section");
+const SubSection = require("../modules/subSection");
+const { uploadImage } = require("../utils/imageUploader");
+
+exports.createSubSection = async (req, res) => {
+  try {
+    //fetch data
+    //section id le lenge frontend se jb button par click hoga
+    //timeDuration changed by myself....   usko hta deaa tha khud se agr glti hui to change kar dunga
+    const { title, description, sectionId } = req.body;
+    //extract video file
+    const video = req.files.video;
+
+    //validation
+    if (!title || !description || !sectionId || !video) {
+      return res.status(400).json({
+        success: false,
+        message: "All properties are required",
+      });
+    }
+
+    let videoUrl = {
+      secure_url: "https://res.cloudinary.com/demo/video/upload/dog.mp4",
+      duration: 10,
+    };
+    if (process.env.API_KEY && !process.env.API_KEY.includes("your_")) {
+      try {
+        videoUrl = await uploadImage(video, process.env.FOLDER_NAME);
+      } catch (uploadErr) {
+        console.warn("Cloudinary video upload failed, using default video:", uploadErr.message);
+      }
+    } else {
+      console.log("Cloudinary credentials not set, using default video.");
+    }
+    console.log("video url hai", videoUrl);
+
+    const payload = {
+      title,
+      description,
+      timeDuration: videoUrl.duration || 10,
+      videoUrl: videoUrl.secure_url,
+      sectionId,
+    };
+
+    const newSubSection = await SubSection.create(payload);
+
+    const updatedSection = await Section.findByIdAndUpdate(
+      sectionId,
+      {
+        $push: {
+          subSection: newSubSection._id,
+        },
+      },
+      { new: true }
+    );
+
+    const updatedCourse = await Course.findById(
+      updatedSection.courseId
+    ).populate({
+      path: "content",
+      populate: {
+        path: "subSection",
+      },
+    });
+
+    //hw log populated query
+
+    return res.status(200).json({
+      success: true,
+      message: "Subsection created successfully",
+      data: updatedCourse,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error while creating subSection",
+      error: error.message,
+    });
+  }
+};
+
+exports.updateSubSection = async (req, res) => {
+  try {
+    const { subSectionId, title, description, timeDuration ,sectionId} = req.body;
+    
+    const video = req.files?.video;
+    console.log("video hai",video);
+    
+    const subSection = await SubSection.findById(subSectionId);
+
+    if (!subSection) {
+      return res.status(400).json({
+        success: false,
+        message: "SubSection not found",
+      });
+    }
+
+    if (title) subSection.title = title;
+    if (description) subSection.description = description;
+    if (timeDuration) subSection.timeDuration = timeDuration;
+
+    if (video) {
+      let videoUrl = {
+        secure_url: "https://res.cloudinary.com/demo/video/upload/dog.mp4",
+        duration: 10,
+      };
+      if (process.env.API_KEY && !process.env.API_KEY.includes("your_")) {
+        try {
+          videoUrl = await uploadImage(video, process.env.FOLDER_NAME);
+        } catch (uploadErr) {
+          console.warn("Cloudinary video upload failed, using default video:", uploadErr.message);
+        }
+      }
+      subSection.videoUrl = videoUrl.secure_url;
+      if (videoUrl.duration) {
+        subSection.timeDuration = videoUrl.duration;
+      }
+    }
+
+    await subSection.save();
+
+    const sectionUpdated=await Section.findById(sectionId);
+
+    if(!sectionUpdated){
+      return res.status(400).json({
+        success:false,
+        message:"No section found for this SubSection"
+      })
+    }
+
+    const updatedCourse=await Course.findById(sectionUpdated.courseId).populate({
+      path:"content",
+      populate:{
+        path:"subSection"
+      }
+    })
+
+    return res.status(200).json({
+      success: true,
+      message: "SubSection updated seccessfully",
+      data: updatedCourse,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error while updating subSection",
+      error: error.message,
+    });
+  }
+};
+
+
+exports.deleteSubSection = async (req, res) => {
+  try {
+    const { subSectionId } = req.body;
+    //console.log("Subsection id",subSectionId);
+    
+    if (!subSectionId) {
+      return res.status(400).json({
+        success: false,
+        message: "SubSection id not found",
+      });
+    }
+
+    const subSection = await SubSection.findById(subSectionId);
+    if (!subSection) {
+      return res.status(401).json({
+        success: false,
+        message: "SubSection not found to delete",
+      });
+    }
+
+    // Delete the subSection
+    await SubSection.findByIdAndDelete(subSectionId);
+
+    // Remove the reference from Section
+    const updatedSection = await Section.findByIdAndUpdate(
+      subSection.sectionId,
+      {
+        $pull: {
+          subSection: subSection._id,
+        },
+      },
+      { new: true }
+    );
+
+    if (!updatedSection) {
+      return res.status(400).json({
+        success: false,
+        message: "No section found for this SubSection",
+      });
+    }
+
+    // ✅ Fetch updated course (like you did in updateSubSection)
+    const updatedCourse = await Course.findById(updatedSection.courseId).populate({
+      path: "content",
+      populate: {
+        path: "subSection",
+      },
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "SubSection deleted successfully",
+      data: updatedCourse, // returning the fresh course
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Error while deleting SubSection",
+      error: error.message,
+    });
+  }
+};
