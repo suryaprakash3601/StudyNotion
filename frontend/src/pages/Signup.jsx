@@ -75,9 +75,9 @@ const handleSubmit=(e)=>{
 
 
   return (
-    <div className="bg-richblack-900 w-screen h-screen flex justify-between text-white">
+    <div className="bg-richblack-900 min-h-screen w-full flex flex-col-reverse lg:flex-row justify-between items-center px-6 md:px-12 lg:px-24 py-12 gap-y-12 text-white">
       {/* Left Side: Form */}
-      <div className="w-[40%] p-20 -mt-5 rounded-lg shadow-lg">
+      <div className="w-full lg:w-[50%] max-w-[500px] rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold mb-2">
           Join the millions learning to code with StudyNotion for free
         </h2>
@@ -228,26 +228,18 @@ const handleSubmit=(e)=>{
             
           </div>
           <button
-          type="submit"
-          className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 hover:scale-105 transition-all duration-200"
-          
-        >
-          Create Account
-        </button>
+            type="submit"
+            className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 hover:scale-105 transition-all duration-200"
+          >
+            Create Account
+          </button>
         </form>
-
-        {/* Submit Button */}
-        
       </div>
 
       {/* Right Side: Image */}
-      <div className="w-[50%] relative flex flex-col mt-40 -mr-36">
-        <div className="absolute h-fit w-fit left-3 top-3">
-          <img src={frame} alt="" width={450} />
-        </div>
-        <div className="absolute h-fit w-fit">
-          <img src={signupImg} alt="" width={450} />
-        </div>
+      <div className="hidden lg:flex w-full lg:w-[45%] max-w-[450px] relative aspect-square">
+        <img src={frame} alt="" className="absolute left-3 top-3 w-full h-full object-cover" />
+        <img src={signupImg} alt="" className="absolute left-0 top-0 w-full h-full object-cover" />
       </div>
     </div>
   );

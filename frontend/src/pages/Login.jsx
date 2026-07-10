@@ -33,12 +33,12 @@ export default function Login() {
 
 
   return (
-    <div className="bg-richblack-900 w-screen h-screen flex justify-between">
-      <div className=" w-[50%]  p-36  text-white rounded-lg shadow-lg mt-5">
+    <div className="bg-richblack-900 min-h-screen w-full flex flex-col-reverse lg:flex-row justify-between items-center px-6 md:px-12 lg:px-24 py-12 gap-y-12">
+      <div className="w-full lg:w-[50%] max-w-[500px] text-white rounded-lg shadow-lg">
         <h2 className="text-3xl font-semibold mb-2 ">Welcome Back</h2>
         <p className="text-pure-greys-200 mb-6  text-lg">
           Build skills for today, tomorrow, and beyond. <br />
-          <span class="font-edu-sa font-bold italic text-blue-100">
+          <span className="font-edu-sa font-bold italic text-blue-100">
             Education to future-proof your career.
           </span>
         </p>
@@ -90,7 +90,7 @@ export default function Login() {
           </div>
           <button
             type="submit"
-            className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900"
+            className="mt-6 rounded-[8px] bg-yellow-50 py-[8px] px-[12px] font-medium text-richblack-900 hover:scale-105 transition-all duration-200"
           >
             Sign In
           </button>
@@ -98,13 +98,9 @@ export default function Login() {
         </form>
         
       </div>
-      <div className="w-[50%] relative flex flex-col mt-40 -mr-36">
-        <div className="absolute h-fit w-fit left-3 top-3">
-          <img src={frame} alt="" width={450} />
-        </div>
-        <div className="absolute h-fit w-fit">
-          <img src={LoginImg} alt="" width={450} />
-        </div>
+      <div className="hidden lg:flex w-full lg:w-[45%] max-w-[450px] relative aspect-square">
+        <img src={frame} alt="" className="absolute left-3 top-3 w-full h-full object-cover" />
+        <img src={LoginImg} alt="" className="absolute left-0 top-0 w-full h-full object-cover" />
       </div>
     </div>
   );
