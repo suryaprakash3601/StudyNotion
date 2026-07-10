@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { BsChevronDown } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
 import { FaRegEdit } from "react-icons/fa";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import IconBtn from "../../common/IconBtn";
 
 export default function VideoSideBarDetails({ setReviewModal }) {
@@ -11,8 +11,6 @@ export default function VideoSideBarDetails({ setReviewModal }) {
   const [activeSubSection, setActiveSubSection] = useState("");
   const navigate = useNavigate();
   const { sectionId, subSectionId } = useParams();
-  const [loading,setLoading]=useState(false);
-  const location = useLocation();
 
   const {
     courseSectionData,
@@ -21,7 +19,6 @@ export default function VideoSideBarDetails({ setReviewModal }) {
     completedLectures,
   } = useSelector((state) => state.viewCourse);
   useEffect(() => {
-  setLoading(true);
 
   let currentSectionId = sectionId;
   let currentSubSectionId = subSectionId;
@@ -44,8 +41,7 @@ export default function VideoSideBarDetails({ setReviewModal }) {
 
   setActiveSection(currentSectionId);
   setActiveSubSection(currentSubSectionId);
-  setLoading(false);
-}, [sectionId, subSectionId, courseSectionData]);
+}, [sectionId, subSectionId, courseSectionData, courseEntireData?._id, navigate]);
 
 
   

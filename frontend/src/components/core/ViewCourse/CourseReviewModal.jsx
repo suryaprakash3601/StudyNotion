@@ -15,7 +15,7 @@ export default function CourseReviewModal({setReviewModal}) {
     useEffect(()=>{
         setValue("courseExperience","")
         setValue("courseRating",0)
-    },[])
+    },[setValue])
 
     const ratingChanged=(newRating)=>{
         setValue("courseRating",newRating)

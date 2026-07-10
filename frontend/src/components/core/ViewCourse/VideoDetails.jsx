@@ -16,7 +16,6 @@ export default function VideoDetails() {
   const {
     courseSectionData,
     courseEntireData,
-    totalNumberOfLecture,
     completedLectures,
   } = useSelector((state) => state.viewCourse);
   //console.log("course section", courseSectionData);
@@ -50,7 +49,7 @@ export default function VideoDetails() {
       setvideoEnded(false);
     }
     videoPlayer();
-  }, [courseEntireData, courseSectionData, location.pathname]);
+  }, [courseEntireData, courseSectionData, location.pathname, courseId, navigate, sectionId, subSectionId]);
 
   const isFirstVideo = () => {
     if (!courseSectionData || courseSectionData.length === 0) return true;

@@ -69,7 +69,7 @@ export default function SearchResults() {
           return next;
         });
       }, 400),
-    []
+    [setSearchParams]
   );
 
   const handleInputChange = (e) => {
