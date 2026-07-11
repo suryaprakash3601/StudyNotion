@@ -294,12 +294,11 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="h-fit p-10 ">
-        <div className=" flex  justify-center w-screen mb-6">
-          <h1 className="text-richblack-25 text-3xl font-bold">Reviews from other learners</h1>
+      <div className="h-fit py-12 px-4 max-w-maxContent mx-auto">
+        <div className="flex justify-center mb-8">
+          <h1 className="text-richblack-25 text-3xl font-bold text-center">Reviews from other learners</h1>
         </div>
-        
-        <ReviewSlider/>
+        <ReviewSlider />
       </div>
 
       <div className="mt-7">
