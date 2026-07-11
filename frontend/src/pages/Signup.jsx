@@ -118,7 +118,7 @@ const handleSubmit=(e)=>{
         {/* Signup Form */}
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
           {/* Name Fields */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex flex-col w-full gap-2">
               <label
                 htmlFor="firstName"
@@ -172,7 +172,7 @@ const handleSubmit=(e)=>{
           </div>
 
           {/* Passwords */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex flex-col w-full gap-2">
               <label
                 htmlFor="password"

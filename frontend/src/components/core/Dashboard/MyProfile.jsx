@@ -32,12 +32,12 @@ export default function MyProfile() {
   }
 
   return (
-    <div>
-      <h1 className="mb-14 text-3xl font-medium text-richblack-5">
+    <div className="px-1 sm:px-0">
+      <h1 className="mb-8 sm:mb-14 text-2xl sm:text-3xl font-medium text-richblack-5">
         My Profile
       </h1>
-      <div className="flex items-center justify-between rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
-        <div className="flex items-center gap-x-4">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-y-4 sm:gap-y-0 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 sm:p-8 sm:px-12">
+        <div className="flex flex-col sm:flex-row items-center text-center sm:text-left gap-4">
           <img
             src={user.profilePic}
             alt={`profile-${user.fName}`}
@@ -47,7 +47,7 @@ export default function MyProfile() {
             <p className="text-lg font-semibold text-richblack-5">
               {user?.fName + " " + user?.lName}
             </p>
-            <p className="text-sm text-richblack-300">{user?.email}</p>
+            <p className="text-sm text-richblack-300 break-all">{user?.email}</p>
           </div>
         </div>
         <IconBtn
@@ -59,7 +59,8 @@ export default function MyProfile() {
           <RiEditBoxLine />
         </IconBtn>
       </div>
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+
+      <div className="my-6 sm:my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 sm:p-8 sm:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">About</p>
           <IconBtn
@@ -81,7 +82,8 @@ export default function MyProfile() {
           {user?.additionalInfo?.bio ?? "Write Something About Yourself"}
         </p>
       </div>
-      <div className="my-10 flex flex-col gap-y-10 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-8 px-12">
+
+      <div className="my-6 sm:my-10 flex flex-col gap-y-6 rounded-md border-[1px] border-richblack-700 bg-richblack-800 p-6 sm:p-8 sm:px-12">
         <div className="flex w-full items-center justify-between">
           <p className="text-lg font-semibold text-richblack-5">
             Personal Details
@@ -95,22 +97,22 @@ export default function MyProfile() {
             <RiEditBoxLine />
           </IconBtn>
         </div>
-        <div className="flex max-w-[500px] justify-between">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 gap-x-10 max-w-[500px] w-full">
           <div className="flex flex-col gap-y-5">
             <div>
-              <p className="mb-2 text-sm text-richblack-600">First Name</p>
+              <p className="mb-1 text-sm text-richblack-600">First Name</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.fName}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Email</p>
-              <p className="text-sm font-medium text-richblack-5">
+              <p className="mb-1 text-sm text-richblack-600">Email</p>
+              <p className="text-sm font-medium text-richblack-5 break-all">
                 {user?.email}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Gender</p>
+              <p className="mb-1 text-sm text-richblack-600">Gender</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.additionalInfo?.gender ?? "Add Gender"}
               </p>
@@ -118,19 +120,19 @@ export default function MyProfile() {
           </div>
           <div className="flex flex-col gap-y-5">
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Last Name</p>
+              <p className="mb-1 text-sm text-richblack-600">Last Name</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.lName}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Phone Number</p>
+              <p className="mb-1 text-sm text-richblack-600">Phone Number</p>
               <p className="text-sm font-medium text-richblack-5">
                 {user?.additionalInfo?.contactNumber ?? "Add Contact Number"}
               </p>
             </div>
             <div>
-              <p className="mb-2 text-sm text-richblack-600">Date Of Birth</p>
+              <p className="mb-1 text-sm text-richblack-600">Date Of Birth</p>
               <p className="text-sm font-medium text-richblack-5">
                 {formattedDate(user?.additionalInfo?.dob) ??
                   "Add Date Of Birth"}

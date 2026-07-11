@@ -33,7 +33,7 @@ import CourseCertificate from "./components/core/Dashboard/CourseCertificate";
 function App() {
   const { user } = useSelector((state) => state.profile);
   return (
-    <div className="w-screen min-h-screen  bg-richblack-900">
+    <div className="w-full min-h-screen  bg-richblack-900">
       <Toaster />
       <NavBar />
       <Routes>

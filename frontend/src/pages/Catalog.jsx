@@ -42,20 +42,20 @@ export default function Catalog() {
 
   return (
     <div>
-      <div className="flex justify-end bg-richblack-800 w-full p-10 text-pure-greys-25">
-        <div className="bg-richblack-800 w-full p-10 text-pure-greys-25 flex flex-col gap-3">
-          <div className="text-pure-greys-300">
+      <div className="flex flex-col md:flex-row justify-between bg-richblack-800 w-full py-8 px-4 md:py-16 md:px-12 text-pure-greys-25 gap-8">
+        <div className="w-full md:w-[65%] flex flex-col gap-3">
+          <div className="text-pure-greys-300 text-sm">
             {`Home / Catalog / `}
             <span className="text-yellow-50">{catogryName}</span>
           </div>
-          <div className="text-3xl font-bold">{catogryName}</div>
-          <div className="text-pure-greys-200">
+          <div className="text-2xl md:text-3xl font-bold">{catogryName}</div>
+          <div className="text-pure-greys-200 text-sm md:text-base">
             {catalogPageData?.selectedCategory?.description}
           </div>
         </div>
-        <div className="mr-10 w-[30%] flex flex-col gap-2">
-          <div className="mr-10">Related resources</div>
-          <ul className="list-disc text-pure-greys-200 ml-10">
+        <div className="w-full md:w-[30%] flex flex-col gap-2 text-sm sm:text-base">
+          <div className="font-semibold">Related resources</div>
+          <ul className="list-disc text-pure-greys-200 ml-5">
             <li>Doc {catogryName}</li>
             <li>cheatSheets</li>
             <li>Articles</li>
@@ -64,7 +64,7 @@ export default function Catalog() {
           </ul>
         </div>
       </div>
-      <div className="w-full p-10 mt-8 text-pure-greys-25">
+      <div className="w-full p-4 md:p-10 mt-8 text-pure-greys-25">
         <div className="text-xl font-semibold mb-4">
           Courses to get you started
         </div>
@@ -87,14 +87,14 @@ export default function Catalog() {
         </div>
         <div className="mt-10"><CourseSlider Courses={CourseDetails} selectedCategory={catalogPageData?.selectedCategory?.name}/></div>
       </div>
-      <div className="p-10 flex flex-col gap-5">
+      <div className="p-4 md:p-10 flex flex-col gap-5">
         <div className="text-3xl font-semibold text-pure-greys-25">Our others courses</div>
         <div>
           <CourseSlider Courses={catalogPageData?.differentCategories}/>
         </div>
         
       </div>
-      <div className="bg-richblack-800 w-full px-10 py-14 text-pure-greys-25 mt-12">
+      <div className="bg-richblack-800 w-full px-4 py-8 md:px-10 md:py-14 text-pure-greys-25 mt-12">
         <div className="text-2xl font-semibold mb-6">
           Frequently Bought Courses
         </div>

@@ -44,14 +44,14 @@ export default function UpdateProfileInformation() {
 
   return (
     <div className="bg-richblack-800 w-[100%] h-fit border border-richblack-500 rounded-md mt-16">
-      <div className="flex flex-col p-10 text-pure-greys-25">
+      <div className="flex flex-col p-6 sm:p-10 text-pure-greys-25">
         <h1 className="text-xl font-semibold">Profile Information</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="mt-6">
-          <div className="flex flex-col gap-7">
+          <div className="flex flex-col gap-6 sm:gap-7">
             {/* First Name & Last Name */}
-            <div className="flex gap-20">
-              <div className="flex flex-col w-[40%] gap-2">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-20">
+              <div className="flex flex-col w-full md:w-[48%] gap-2">
                 <label htmlFor="firstName">First Name</label>
                 <input
                   type="text"
@@ -69,7 +69,7 @@ export default function UpdateProfileInformation() {
                 )}
               </div>
 
-              <div className="flex flex-col w-[40%] gap-2">
+              <div className="flex flex-col w-full md:w-[48%] gap-2">
                 <label htmlFor="lastName">Last Name</label>
                 <input
                   type="text"
@@ -89,8 +89,8 @@ export default function UpdateProfileInformation() {
             </div>
 
             {/* DOB & Gender */}
-            <div className="flex gap-20">
-              <div className="flex flex-col w-[40%] gap-2">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-20">
+              <div className="flex flex-col w-full md:w-[48%] gap-2">
                 <label htmlFor="dob">Date of Birth</label>
                 <input
                   type="date"
@@ -111,7 +111,7 @@ export default function UpdateProfileInformation() {
                 )}
               </div>
 
-              <div className="flex flex-col w-[40%] gap-2">
+              <div className="flex flex-col w-full md:w-[48%] gap-2">
                 <label htmlFor="gender">Gender</label>
                 <select
                   id="gender"
@@ -134,8 +134,8 @@ export default function UpdateProfileInformation() {
             </div>
 
             {/* Contact Number & About */}
-            <div className="flex gap-20">
-              <div className="flex flex-col w-[40%] gap-2">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-20">
+              <div className="flex flex-col w-full md:w-[48%] gap-2">
                 <label htmlFor="contactNumber">Contact Number</label>
                 <input
                   type="tel"
@@ -155,7 +155,7 @@ export default function UpdateProfileInformation() {
                 )}
               </div>
 
-              <div className="flex flex-col w-[40%] gap-2">
+              <div className="flex flex-col w-full md:w-[48%] gap-2">
                 <label htmlFor="about">About</label>
                 <input
                   type="text"
@@ -173,7 +173,7 @@ export default function UpdateProfileInformation() {
             </div>
 
             {/* Submit Button */}
-            <div className="flex justify-end mt-6 gap-6">
+            <div className="flex justify-end mt-6 gap-3 sm:gap-6">
               <button
                 onClick={() => navigate("/dashboard/my-profile")}
                 type="button"

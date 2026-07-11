@@ -63,31 +63,31 @@ export default function ChangeProfilePic() {
 
 
   return (
-    <div className="bg-richblack-800 w-80% h-[150px] border border-richblack-500 rounded-md">
-      <div className="flex items-center w-full h-full gap-10 px-10 text-pure-greys-25">
+    <div className="bg-richblack-800 w-full h-auto py-6 sm:h-[150px] sm:py-0 border border-richblack-500 rounded-md">
+      <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start w-full h-full gap-6 sm:gap-10 px-6 sm:px-10 text-pure-greys-25 text-center sm:text-left">
         <img
           src={preview||user?.profilePic}
           alt={`profile-${user.fName}`}
-          className="aspect-square w-[78px] rounded-full"
+          className="aspect-square w-[78px] rounded-full object-cover"
         />
         <div className="flex flex-col gap-3">
-          <p>Choose profile picture</p>
+          <p className="text-base sm:text-lg">Choose profile picture</p>
           <input 
           type="file"
           onChange={handleChange}
           accept="image/png, image/gif, image/jpeg" 
           className="hidden" ref={inputRef}/>
-          <div className="flex gap-3">
+          <div className="flex justify-center sm:justify-start gap-3">
             <button
             onClick={handleClick}
             disabled={loading}
-            className="cursor-pointer rounded-md bg-richblack-700 w-24 p-1.5 text-pure-greys-25 font-semibold">
+            className="cursor-pointer rounded-md bg-richblack-700 w-24 p-1.5 text-pure-greys-25 font-semibold hover:bg-richblack-600 transition-colors">
               Select
             </button>
             <IconBtn
               text={loading ? "Uploading" : "Upload"}
               customClass={`w-24 h-9 w-fit`}
-              onclick={handleupload}
+              onClick={handleupload}
             />
           </div>
         </div>

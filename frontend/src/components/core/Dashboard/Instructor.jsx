@@ -64,20 +64,22 @@ export default function Instructor() {
         </>
       ) : courses.length > 0 ? (
         <div>
-          <div className="my-4 flex h-[450px] space-x-4">
+          <div className="my-4 flex flex-col lg:flex-row h-auto lg:h-[450px] gap-4">
             {/* Render chart / graph */}
-            {totalAmount > 0 || totalStudents > 0 ? (
-              <InstructorChart courses={instructorData} />
-            ) : (
-              <div className="flex-1 rounded-md bg-richblack-800 p-6">
-                <p className="text-lg font-bold text-richblack-5">Visualize</p>
-                <p className="mt-4 text-xl font-medium text-richblack-50">
-                  Not Enough Data To Visualize
-                </p>
-              </div>
-            )}
+            <div className="flex-1 min-h-[300px] lg:h-full">
+              {totalAmount > 0 || totalStudents > 0 ? (
+                <InstructorChart courses={instructorData} />
+              ) : (
+                <div className="h-full rounded-md bg-richblack-800 p-6">
+                  <p className="text-lg font-bold text-richblack-5">Visualize</p>
+                  <p className="mt-4 text-xl font-medium text-richblack-50">
+                    Not Enough Data To Visualize
+                  </p>
+                </div>
+              )}
+            </div>
             {/* Total Statistics */}
-            <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
+            <div className="flex w-full lg:min-w-[250px] lg:w-auto flex-col rounded-md bg-richblack-800 p-6">
               <p className="text-lg font-bold text-richblack-5">Statistics</p>
               <div className="mt-4 space-y-4">
                 <div>
@@ -109,9 +111,9 @@ export default function Instructor() {
                 <p className="text-xs font-semibold text-yellow-50">View All</p>
               </Link>
             </div>
-            <div className="my-4 flex items-start space-x-6">
+            <div className="my-4 flex flex-col md:flex-row gap-6 md:gap-0 md:space-x-6 items-start">
               {courses.slice(0, 3).map((course) => (
-                <div key={course._id} className="w-1/3">
+                <div key={course._id} className="w-full md:w-1/3">
                   <img
                     src={course.thumbnail}
                     alt={course.title}

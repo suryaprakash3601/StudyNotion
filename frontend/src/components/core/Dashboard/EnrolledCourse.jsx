@@ -36,7 +36,7 @@ const EnrolledCourses = () => {
       ) : (
         <div className="space-y-6">
           {/* Table Header */}
-          <div className="grid grid-cols-12 bg-gray-800 py-2 px-4 rounded-md text-sm font-semibold text-gray-300">
+          <div className="hidden sm:grid grid-cols-12 bg-gray-800 py-2 px-4 rounded-md text-sm font-semibold text-gray-300">
             <p className="col-span-6">Course Name</p>
             <p className="col-span-3">Duration</p>
             <p className="col-span-3">Progress</p>
@@ -46,7 +46,7 @@ const EnrolledCourses = () => {
           {enrolledCourses.map((course, index) => (
             <div
               key={index}
-              className="grid grid-cols-12 items-center bg-richblack-800 hover:bg-richblack-700 transition-colors duration-200 py-4 px-4 rounded-md shadow-md cursor-pointer"
+              className="flex flex-col sm:grid sm:grid-cols-12 items-start sm:items-center bg-richblack-800 hover:bg-richblack-700 transition-colors duration-200 py-4 px-4 gap-4 sm:gap-0 rounded-md shadow-md cursor-pointer"
               onClick={() => {
                 if (!course.content?.length || !course.content[0]?.subSection?.length) {
                   return;
@@ -55,15 +55,15 @@ const EnrolledCourses = () => {
               }}
             >
               {/* Course Info */}
-              <div className="col-span-6 flex items-center gap-4">
+              <div className="col-span-6 flex items-center gap-4 w-full">
                 <img
                   src={course.thumbnail}
                   alt={course.courseName}
-                  className="w-20 h-16 rounded object-cover"
+                  className="w-16 h-12 sm:w-20 sm:h-16 rounded object-cover shrink-0"
                 />
-                <div>
-                  <p className="text-base font-medium">{course.title}</p>
-                  <p className="text-sm text-gray-400">
+                <div className="min-w-0">
+                  <p className="text-base font-medium truncate sm:whitespace-normal">{course.title}</p>
+                  <p className="text-sm text-gray-400 truncate sm:whitespace-normal">
                     {course.description.split(" ").length > 5
                       ? course.description.split(" ").splice(0,5).join(" ") +
                         "..."
@@ -73,12 +73,13 @@ const EnrolledCourses = () => {
               </div>
 
               {/* Duration */}
-              <div className="col-span-3 text-sm text-gray-300">
+              <div className="col-span-3 text-sm text-gray-300 flex items-center gap-2 sm:block">
+                <span className="sm:hidden font-semibold text-gray-400">Duration:</span>
                 {course?.totalDuration || `02hr : 50min`}
               </div>
 
               {/* Progress */}
-              <div className="col-span-3">
+              <div className="col-span-3 w-full sm:w-auto">
                 <p className="text-sm text-gray-300 mb-1">
                   Progress: {course.progressPercentage || 0}%
                 </p>

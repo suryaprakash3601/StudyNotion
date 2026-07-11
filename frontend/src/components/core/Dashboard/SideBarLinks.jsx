@@ -2,7 +2,7 @@ import React from "react";
 import { matchPath, NavLink, useLocation } from "react-router-dom";
 import * as Icons from "react-icons/vsc";
 
-export default function SideBarLinks({ links }) {
+export default function SideBarLinks({ links, onClick }) {
   //console.log("links ", links);
   const location = useLocation();
   const Icon = Icons[links.icon];
@@ -13,7 +13,7 @@ export default function SideBarLinks({ links }) {
   return (
     <div className="relative   ">
       {
-        <NavLink to={links.path} className={`w-full`}>
+        <NavLink to={links.path} className={`w-full`} onClick={onClick}>
           <div
             className={`${matchRoute(links.path) ? "bg-yellow-600" : ""} p-1.5`}
           >

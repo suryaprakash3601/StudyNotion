@@ -168,10 +168,23 @@ export default function CourseDetails() {
             {/* Mobile Buy Section */}
             <div className="flex w-full flex-col gap-4 border-y border-richblack-500 py-4 lg:hidden">
               <p className="pb-4 text-3xl font-semibold text-richblack-5">Rs. {price}</p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
-                Buy Now
+              <button
+                className="yellowButton"
+                onClick={
+                  user && course?.studentsEnrolled?.includes(user?._id)
+                    ? () => navigate("/dashboard/enrolled-courses")
+                    : handleBuyCourse
+                }
+              >
+                {user && course?.studentsEnrolled?.includes(user?._id)
+                  ? "Go To Course"
+                  : "Buy Now"}
               </button>
-              <button className="blackButton" onClick={handleAddToCart}>Add to Cart</button>
+              {(!user || !course?.studentsEnrolled?.includes(user?._id)) && (
+                <button className="blackButton" onClick={handleAddToCart}>
+                  Add to Cart
+                </button>
+              )}
             </div>
           </div>
 
@@ -187,7 +200,7 @@ export default function CourseDetails() {
       </div>
 
       {/* Course Body */}
-      <div className="-ml-20 box-content px-4 text-richblack-5 lg:w-[1260px]">
+      <div className="mx-auto box-content px-4 text-richblack-5 lg:w-[1260px] py-8">
         <div className="mx-auto max-w-maxContentTab xl:max-w-[810px]">
           {/* What you'll learn */}
           <div className="my-8 border border-richblack-600 p-8">
